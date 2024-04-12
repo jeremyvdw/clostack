@@ -1,7 +1,9 @@
 (ns clostack.utils
   "Common utility functions"
-  (:require [clojure.string :as str])
-  (:import java.net.URLEncoder))
+  (:require
+   [clojure.string :as str])
+  (:import
+   java.net.URLEncoder))
 
 (defn url-encode
   "Encode URL"

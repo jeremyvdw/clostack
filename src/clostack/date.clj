@@ -1,7 +1,8 @@
 (ns clostack.date
   "Date manipulation functions."
-  (:require [clj-time.format :refer [parse unparse formatter formatters]]
-            [clj-time.core   :refer [seconds plus now after?]]))
+  (:require
+   [clj-time.core   :refer [after? now plus seconds]]
+   [clj-time.format :refer [formatter formatters parse unparse]]))
 
 (def cloudstack-expires-formatter (formatter "yyyy-MM-dd'T'HH:mm:ssZ"))
 

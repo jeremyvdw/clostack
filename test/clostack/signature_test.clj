@@ -1,6 +1,7 @@
 (ns clostack.signature-test
-  (:require [clostack.signature :refer [sha1-signature]]
-            [clojure.test :refer :all]))
+  (:require
+   [clojure.test :refer :all]
+   [clostack.signature :refer [sha1-signature]]))
 
 (deftest sha1-signature-nils
   (testing "sha1 signature without a secret"
@@ -8,8 +9,6 @@
                  (sha1-signature nil "input"))))
   (testing "sha1 signature without an input"
     (is (nil? (sha1-signature "secret" nil)))))
-
-
 
 (deftest sha1-signature-input
   (testing "string and byte inputs give the same sig"

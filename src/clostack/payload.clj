@@ -1,13 +1,11 @@
 (ns clostack.payload
   "Functions to work with appropriate cloudstack payloads."
-  (:require [clj-time.format    :as f]
-            [clj-time.core      :as t]
-            [clojure.string     :as s]
-            [clostack.date      :refer [expires-args]]
-            [clostack.signature :as sig]
-            [clostack.utils     :refer [url-encode quote-plus]]
-            [exoscale.cloak     :as cloak]))
-
+  (:require
+   [clojure.string     :as s]
+   [clostack.date      :refer [expires-args]]
+   [clostack.signature :as sig]
+   [clostack.utils     :refer [quote-plus url-encode]]
+   [exoscale.cloak     :as cloak]))
 
 (def default-expiration 600)
 
@@ -45,7 +43,7 @@
 
 (defn duplicated-keys [m]
   (let [duplicated (->> (group-by (comp clojure.string/lower-case key) m)
-                        (filter (comp (partial < 1)count second))
+                        (filter (comp (partial < 1) count second))
                         (map first))]
     (seq duplicated)))
 
@@ -81,13 +79,13 @@
 (defn build-payload
   "Build a signed payload for a given config, opcode and args triplet"
   ([config opcode args]
-    (build-payload config (assoc args :command opcode)))
+   (build-payload config (assoc args :command opcode)))
   ([{:keys [api-key api-secret expiration]} args]
-    (let [exp-s      (try (int expiration)
-                          (catch Exception _ default-expiration))
-          exp-args   (expires-args exp-s)
-          args       (-> args
-                         (assoc :apiKey api-key :response "json")
-                         (merge exp-args))
-          signature  (sign args (cloak/unmask api-secret))]
-      (assoc args :signature signature))))
+   (let [exp-s      (try (int expiration)
+                         (catch Exception _ default-expiration))
+         exp-args   (expires-args exp-s)
+         args       (-> args
+                        (assoc :apiKey api-key :response "json")
+                        (merge exp-args))
+         signature  (sign args (cloak/unmask api-secret))]
+     (assoc args :signature signature))))

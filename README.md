@@ -1,9 +1,8 @@
 clostack: clojure cloudstack client
 ===================================
 
-[![Build Status](https://secure.travis-ci.org/exoscale/clostack.png)](http://travis-ci.org/exoscale/clostack)
+[![Clojure CI](https://github.com/exoscale/clostack/actions/workflows/clojure.yml/badge.svg)](https://github.com/exoscale/clostack/actions/workflows/clojure.yml)
 [![Clojars Project](https://img.shields.io/clojars/v/exoscale/clostack.svg)](https://clojars.org/exoscale/clostack)
-
 
 A simple clojure cloudstack client.
 
@@ -71,14 +70,12 @@ be used, setting clostack.profile to `staging` would switch this mode of operati
 The easiest way to use clostack in your own projects is via Leiningen. Add the following dependency to your project.clj file:
 
 ```clojure
-[exoscale/clostack "0.2.17"]
+[exoscale/clostack "0.2.23"]
 ```
 
 ## Documentation
 
 https://exoscale.github.io/clostack
-
-
 
 ## Sample Code
 

@@ -1,12 +1,13 @@
 (ns clostack.client
   "A mostly generated wrapper to the CloudStack API."
-  (:require [clojure.string           :as str]
-            [cheshire.core            :as json]
-            [aleph.http               :as http]
-            [manifold.deferred        :as d]
-            [byte-streams             :as bs]
-            [clostack.config          :as config]
-            [clostack.payload         :as payload]))
+  (:require
+   [aleph.http               :as http]
+   [byte-streams             :as bs]
+   [cheshire.core            :as json]
+   [clojure.string           :as str]
+   [clostack.config          :as config]
+   [clostack.payload         :as payload]
+   [manifold.deferred        :as d]))
 
 (defn http-client
   "Create an HTTP client. Takes a map of two

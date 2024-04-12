@@ -1,0 +1,40 @@
+---
+name: Clojure
+on:
+  push:
+    branches-ignore:
+      - gh-pages
+    tags-ignore:
+      - "**"
+jobs:
+  clojure:
+    name: Clojure CI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "11"
+
+      - name: Install Clojure
+        uses: DeLaGuardo/setup-clojure@12.5
+        with:
+          lein: 2.11.2
+
+      - name: Install clojure-lsp
+        uses: clojure-lsp/setup-clojure-lsp@v1
+        with:
+          clojure-lsp-version: 2024.03.31-19.10.13
+
+      - name: Check formatting style
+        run: clojure-lsp format --dry
+
+      - name: Lint namespace forms
+        run: clojure-lsp clean-ns --dry
+
+      - name: Run tests
+        run: lein test

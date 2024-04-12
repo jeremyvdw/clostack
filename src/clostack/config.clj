@@ -2,9 +2,10 @@
   "This namespace provides a few functions which try very hard
    to find configuration for the library. See the `init` function
    for a description of the logic."
-  (:require [clojure.string :as s]
-            [clojure.edn    :as edn]
-            [exoscale.cloak :as cloak]))
+  (:require
+   [clojure.edn    :as edn]
+   [clojure.string :as s]
+   [exoscale.cloak :as cloak]))
 
 (defn getenv
   "Fetch variable from environment or system properties"

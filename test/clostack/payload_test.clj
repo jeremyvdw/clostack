@@ -1,8 +1,9 @@
 (ns clostack.payload-test
-  (:require [clostack.payload :refer [sign build-payload]]
-            [clojure.test :refer :all]
-            [clj-time.core :as t]
-            [exoscale.cloak :as cloak]))
+  (:require
+   [clj-time.core :as t]
+   [clojure.test :refer :all]
+   [clostack.payload :refer [build-payload sign]]
+   [exoscale.cloak :as cloak]))
 
 (def API_KEY "key")
 (def API_SECRET "secret")
@@ -19,7 +20,6 @@
   (testing "keys should be uniq"
     (is (thrown-with-msg? Exception #"Keys should not be duplicated"
                           (sign {:a "foo" :A "bar"} API_SECRET)))))
-
 
 (deftest test-payload
   (testing "clear text secret"
